@@ -1,0 +1,29 @@
+# Binaries
+ufi
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+dist/
+
+# Go workspace
+go.work
+go.work.sum
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Config
+.ufi.yaml
+
+# Encrypted credentials
+.ufi/
