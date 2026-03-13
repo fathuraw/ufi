@@ -2,7 +2,7 @@
 
 **UniFi** from the terminal. Manage your UDM, UDR, or UCG — devices, clients, networks, firewall, WiFi, DNS, ACLs — without touching the web UI.
 
-Built on the [UniFi Integration API](https://developers.ui.com/) (`/integration/v1`).
+Built on the [UniFi Network Integration API](https://developer.ui.com/network/v10.1.84/gettingstarted).
 
 ## Install
 
