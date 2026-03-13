@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	credDir  = ".ufi"
+	credDir  = ".config/ufi"
 	credFile = "credentials.enc"
 	saltSize = 16
 	keyLen   = 32 // AES-256

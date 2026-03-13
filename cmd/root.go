@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/fathuraw/ufi/internal/auth"
@@ -79,7 +80,7 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default $HOME/.ufi.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default $HOME/.config/ufi/config.yaml)")
 	rootCmd.PersistentFlags().StringVar(&apiKey, "api-key", "", "API key (overrides keyring)")
 	rootCmd.PersistentFlags().String("host", "", "controller URL (e.g. https://192.168.1.1)")
 	rootCmd.PersistentFlags().String("site", "", "site ID (default: from config)")
@@ -99,9 +100,10 @@ func initConfig() {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
-		viper.AddConfigPath(home)
+		configDir := filepath.Join(home, ".config", "ufi")
+		viper.AddConfigPath(configDir)
 		viper.SetConfigType("yaml")
-		viper.SetConfigName(".ufi")
+		viper.SetConfigName("config")
 	}
 
 	viper.SetEnvPrefix("UFI")

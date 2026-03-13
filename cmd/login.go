@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/fathuraw/ufi/internal/auth"
@@ -48,9 +49,12 @@ var loginCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		configPath := home + "/.ufi.yaml"
+		configDir := filepath.Join(home, ".config", "ufi")
+		if err := os.MkdirAll(configDir, 0755); err != nil {
+			return fmt.Errorf("create config dir: %w", err)
+		}
+		configPath := filepath.Join(configDir, "config.yaml")
 		if err := viper.WriteConfigAs(configPath); err != nil {
-			// If file exists, safe-write
 			if err := viper.WriteConfig(); err != nil {
 				return fmt.Errorf("write config: %w", err)
 			}

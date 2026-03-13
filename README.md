@@ -147,7 +147,7 @@ ufi device list --filter "state eq CONNECTED"
 | `--api-key` | API key (overrides keychain) |
 | `--json` | JSON output |
 | `--insecure` | Skip TLS verification (self-signed certs) |
-| `--config` | Config file path (default `~/.ufi.yaml`) |
+| `--config` | Config file path (default `~/.config/ufi/config.yaml`) |
 
 ## Authentication
 
@@ -167,7 +167,7 @@ ufi logout         # remove credentials
 | macOS | Keychain | `Keychain Access > login > ufi-cli` |
 | Linux (desktop) | Secret Service (GNOME Keyring / KDE Wallet) | Via D-Bus `org.freedesktop.secrets` |
 | Windows | Credential Manager | `Control Panel > Credential Manager > ufi-cli` |
-| Linux (headless) | Encrypted file | `~/.ufi/credentials.enc` |
+| Linux (headless) | Encrypted file | `~/.config/ufi/credentials.enc` |
 
 The encrypted file fallback uses **AES-256-GCM** with a key derived from your passphrase via **Argon2id**. If `ufi login` can't reach the system keyring, it prompts you for a passphrase and creates this file instead.
 
@@ -180,11 +180,11 @@ When ufi needs the API key, it checks these in order (first one wins):
 1. `UFI_API_KEY` environment variable — for CI, scripts, containers
 2. `--api-key` flag — inline override
 3. System keyring — set by `ufi login`
-4. Encrypted file (`~/.ufi/credentials.enc`) — fallback when no keyring
+4. Encrypted file (`~/.config/ufi/credentials.enc`) — fallback when no keyring
 
 ### Config file
 
-`~/.ufi.yaml` stores host and site only (no secrets):
+`~/.config/ufi/config.yaml` stores host and site only (no secrets):
 
 ```yaml
 host: https://192.168.1.1

@@ -22,8 +22,5 @@ go.work.sum
 *.swp
 *.swo
 
-# Config
-.ufi.yaml
-
-# Encrypted credentials
-.ufi/
+# Config & credentials (stored in ~/.config/ufi/)
+.config/
